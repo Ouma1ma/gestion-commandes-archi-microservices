@@ -1,0 +1,35 @@
+<div class="container" *ngIf="billDetail">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header"> Bill N° {{billDetail._embedded.bills[0].id}} details: </div>
+        <div class="card-body">
+          <ul class="list-group">
+            <li class="list-group-item"> Billing Date: {{billDetail._embedded.bills[0].billingDate | date}} </li>
+            <li class="list-group-item"> Customer ID: {{billDetail._embedded.bills[0].customerId}} </li>
+            <li class="list-group-item" *ngIf="billDetail._embedded.bills[0].productItems">
+              Product items:
+              <br>
+              <table >
+                <thead>
+                  <tr class="bg-dark text-white">
+                    <th> Product ID </th>
+                    <th> Quantity </th>
+                    <th> Price </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let pi of billDetail._embedded.bills[0].productItems">
+                    <td> {{pi.productId}}</td>
+                    <td>{{pi.quantity}} </td>
+                    <td> {{pi.price}} </td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
